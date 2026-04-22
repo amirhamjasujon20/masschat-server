@@ -50,14 +50,17 @@ app.post('/send-notification', async (req, res) => {
 
         console.log('Notification পাঠানো হয়েছে:', senderName, '→', message);
         res.json({ success: true, messageId: response });
-
-    } catch (error) {
-        console.error('Error:', error.message);
-        res.status(500).json({ 
-            success: false, 
-            error: error.message 
-        });
-    }
+} catch (error) {
+    console.error('❌ Full Error:', JSON.stringify(error));
+    console.error('❌ Error code:', error.code);
+    console.error('❌ Error message:', error.message);
+    res.status(500).json({
+        success: false,
+        error: error.message,
+        code: error.code,
+        details: JSON.stringify(error)
+    });
+}
 });
 
 // Server চালু আছে কিনা চেক করার জন্য
