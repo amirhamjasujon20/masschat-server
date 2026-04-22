@@ -2,7 +2,7 @@ const express = require('express');
 const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 
-const serviceAccount = require('./serviceAccount.json');
+const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_JSON);
 
 // Firebase Admin initialize
 admin.initializeApp({
